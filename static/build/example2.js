@@ -24,7 +24,7 @@ var ListItem = React.createClass({
                     x = response.bro;
                     console.log(x);
                     this.setState({
-                        isBro: 'for sure'
+                        isBro: response.bro
                     });
                 }.bind(this),
                 error: function(error) {
@@ -101,7 +101,63 @@ var ListContainer = React.createClass({
                     React.createElement(ListHeader, null),
                     React.createElement(ListItem, null),
                     React.createElement(ListItem, null),
-                    React.createElement(ListItem, null)
+                    React.createElement(ListItem, null),
+                    React.createElement(BroInput, null)
+                    )
+               );
+    }
+});
+
+var BroInput = React.createClass({
+    displayName: 'BroInput',
+    getInitialState: function() {
+        return {
+            inValue: 'bro bro bro'
+        };
+    },
+    handleChange: function(evt) {
+        this.setState({
+            inValue: evt.target.value
+        });
+        console.log(this.state.inValue);
+    },
+    updateBro: function() {
+        $.ajax({
+            url: '/update-data',
+            data: JSON.stringify(this.state.inValue),
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            type: 'POST',
+            success: function(response) {
+                console.log(response);
+            }.bind(this),
+            error: function(error) {
+                console.log(error);
+            }
+        });
+
+    },
+    render: function() {
+        return (
+                React.createElement('div',
+                    {
+                        className: 'input-section'
+                    },
+                    React.createElement('input',
+                        {
+                            className: 'bro-input',
+                            value: this.state.inValue,
+                            onChange: this.handleChange
+                        },
+                        null
+                        ),
+                    React.createElement('button',
+                        {
+                            className: 'bro-input-submit',
+                            onClick: this.updateBro
+                        },
+                        'update'
+                        )
                     )
                );
     }

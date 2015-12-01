@@ -28,7 +28,18 @@ def changeX():
 
 @app.route('/get-data', methods=['GET'])
 def get_data():
+    with open('data.json') as f:
+        data = json.load(f)
     return jsonify(data)
+
+@app.route('/update-data', methods=['POST'])
+def update_data():
+    print request.data
+    new_data = { 'bro': request.data }
+    print new_data
+    with open('data.json', 'w') as f:
+        json.dump(new_data, f, indent=4)
+    return 'thanks!'
 
 
 if __name__ == '__main__':
