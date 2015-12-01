@@ -17,6 +17,22 @@ var ListItem = React.createClass({
                     background: 'green'
                 });
             }
+            var x = 5;
+            $.ajax({
+                url: '/get-data',
+                success: function(response) {
+                    x = response.bro;
+                    console.log(x);
+                    this.setState({
+                        isBro: 'for sure'
+                    });
+                }.bind(this),
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+            console.log(x);
+
             console.log('background changed!');
             console.log(this.state.background);
             console.log(this.state.count);
@@ -25,7 +41,8 @@ var ListItem = React.createClass({
     getInitialState: function() {
         return {
             background: 'red',
-            count: 0
+            count: 0,
+            isBro: 'maybs'
         }
     },
     render: function() {
@@ -46,7 +63,7 @@ var ListItem = React.createClass({
                             className: 'list-item-notes',
                             style: { color: 'yellow' }
                         },
-                        'list item notes'
+                        this.state.isBro
                         ),
                     React.createElement('button',
                         {

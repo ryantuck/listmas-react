@@ -6,6 +6,9 @@ app = Flask(__name__)
 
 myVariable = 5
 
+with open('data.json') as f:
+    data = json.load(f)
+
 @app.route('/')
 def hello():
   global myVariable
@@ -22,6 +25,10 @@ def changeX():
   print 'y = ', y
   print 'myVariable = ', myVariable
   return jsonify(**locals())
+
+@app.route('/get-data', methods=['GET'])
+def get_data():
+    return jsonify(data)
 
 
 if __name__ == '__main__':
