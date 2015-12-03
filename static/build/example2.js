@@ -34,8 +34,7 @@ var ListItem = React.createClass({
             $.ajax({
                 url: '/users',
                 success: function(response) {
-                    x = response.bro;
-                    console.log(x);
+                    console.log(response);
                     this.setState({
                         api_response: response
                     });
