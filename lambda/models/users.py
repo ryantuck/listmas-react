@@ -6,9 +6,7 @@ def get_user(event, context):
     dynamo = boto3.resource('dynamodb')
     table = dynamo.Table('users')
 
-    item_key = {
-            'email': 'ryan@ryantuck.io'
-            }
+    item_key = event
 
     r = table.get_item(Key=item_key)
 
@@ -19,9 +17,7 @@ def create_user(event, context):
     dynamo = boto3.resource('dynamodb')
     table = dynamo.Table('users')
 
-    item = {
-            'email': 'brodude@bro.com'
-            }
+    item = event
 
     r = table.put_item(Item=item)
 
@@ -32,9 +28,7 @@ def delete_user(event, context):
     dynamo = boto3.resource('dynamodb')
     table = dynamo.Table('users')
 
-    item_key = {
-            'email': 'brodude@bro.com'
-            }
+    item_key = event
 
     r = table.delete_item(Key=item_key)
 

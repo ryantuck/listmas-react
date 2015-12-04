@@ -32,7 +32,7 @@ var ListItem = React.createClass({
                 }
             });
             $.ajax({
-                url: '/users',
+                url: 'https://uebxofiaf4.execute-api.us-west-2.amazonaws.com/dev/users',
                 success: function(response) {
                     console.log(response);
                     this.setState({
@@ -143,8 +143,8 @@ var BroInput = React.createClass({
     },
     updateBro: function() {
         $.ajax({
-            url: '/update-data',
-            data: JSON.stringify(this.state.inValue),
+            url: 'https://uebxofiaf4.execute-api.us-west-2.amazonaws.com/dev/create-user',
+            data: JSON.stringify({ 'email': this.state.inValue }),
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             type: 'POST',
