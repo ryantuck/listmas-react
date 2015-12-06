@@ -9,6 +9,7 @@ var Nav = React.createClass({
                             React.createElement('a', {className: 'navbar-brand'}, 'listmas')
                             ),
                         React.createElement('div', {className: 'navbar-inner'},
+                            React.createElement('p', {className: 'navbar-text'}, 'santa@listmas.io'),
                             React.createElement('ul', {className: 'nav navbar-nav navbar-right'},
                                 React.createElement('li', {},
                                     React.createElement('a',{},'edit list')
