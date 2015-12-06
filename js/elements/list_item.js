@@ -15,7 +15,6 @@ var ListItem = React.createClass({
                     background: 'green'
                 });
             }
-            var x = 5;
             $.ajax({
                 url: '/get-data',
                 success: function(response) {
@@ -41,7 +40,6 @@ var ListItem = React.createClass({
                     console.log(error);
                 }
             });
-            console.log(x);
 
             console.log('background changed!');
             console.log(this.state.background);
@@ -53,44 +51,71 @@ var ListItem = React.createClass({
             background: 'red',
             count: 0,
             isBro: 'maybs',
-            api_Response: 'asdf'
+            api_Response: 'asdf',
+            title: 'item title',
+            notes: 'item notes',
+            url: 'item url'
         }
     },
     render: function() {
         return (
-                React.createElement('div',
+                React.createElement('li',
                     {
-                        className: 'list-item',
-                        style: { backgroundColor: this.state.background }
+                        className: 'list-group-item'
                     },
-                    React.createElement('h1',
+                    React.createElement('div',
                         {
-                            className: 'list-item-title'
+                            className: 'row'
                         },
-                        this.state.count
+                        React.createElement('div',
+                            {
+                                className: 'col-md-6'
+                            },
+                            React.createElement('h1',
+                                {
+                                    className: 'list-item-title'
+                                },
+                                this.state.title
+                                )
+                            ),
+                        React.createElement('div',
+                            {
+                                className: 'col-md-4'
+                            },
+                            React.createElement('p',
+                                {
+                                    className: 'list-item-notes'
+                                },
+                                this.state.notes
+                                ),
+                            React.createElement('p',
+                                {
+                                    className: 'more_stuff'
+                                },
+                                this.state.url
+                                )
                         ),
-                    React.createElement('p',
-                        {
-                            className: 'list-item-notes',
-                            style: { color: 'yellow' }
-                        },
-                        this.state.isBro
-                        ),
-                    React.createElement('p',
-                        {
-                            className: 'more_stuff',
-                            style: { color: 'yellow' }
-                        },
-                        this.state.api_response
-                        ),
-                    React.createElement('button',
-                        {
-                            className: 'list-item-button',
-                            onClick: this.changeColor
-                        },
-                        'claim'
+                        React.createElement('div',
+                            {
+                                className: 'col-md-2'
+                            },
+                            React.createElement('button',
+                                {
+                                    className: 'btn btn-primary',
+                                    onClick: this.changeColor
+                                },
+                                'edit'
+                                ),
+                            React.createElement('button',
+                                {
+                                    className: 'btn btn-danger',
+                                    onClick: this.changeColor
+                                },
+                                'delete'
+                                )
+                            )
                         )
                     )
-               );
+                );
     }
 });

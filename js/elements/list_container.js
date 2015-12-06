@@ -6,10 +6,8 @@ var ListContainer = React.createClass({
                 React.createElement('div',
                     {className: 'list-container'},
                     React.createElement(ListHeader, null),
-                    React.createElement(ListItem, null),
-                    React.createElement(ListItem, null),
-                    React.createElement(ListItem, null),
-                    React.createElement(NewPresentForm,null)
+                    React.createElement(NewPresentForm,null),
+                    React.createElement(List,null)
                     )
                );
     }
