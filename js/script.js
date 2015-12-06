@@ -3,6 +3,6 @@
 
 
 React.render(
-  React.createElement(ListContainer, null),
-  document.getElementById('content')
+  React.createElement(Listmas, null),
+  document.getElementById('app')
 );

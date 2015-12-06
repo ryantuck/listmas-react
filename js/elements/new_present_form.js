@@ -61,7 +61,7 @@ var NewPresentForm = React.createClass({
                                 ),
                             React.createElement('button',
                                 {
-                                    className: ' btn btn-success',
+                                    className: ' btn btn-success btn-block',
                                     onClick: this.createPresent
                                 },
                                 'create present!'

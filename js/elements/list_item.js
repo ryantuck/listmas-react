@@ -104,14 +104,14 @@ var ListItem = React.createClass({
                             },
                             React.createElement('button',
                                 {
-                                    className: 'btn btn-primary',
+                                    className: 'btn btn-primary btn-block',
                                     onClick: this.printTest
                                 },
                                 'edit'
                                 ),
                             React.createElement('button',
                                 {
-                                    className: 'btn btn-danger',
+                                    className: 'btn btn-danger btn-block',
                                     onClick: this.changeColor
                                 },
                                 'delete'
