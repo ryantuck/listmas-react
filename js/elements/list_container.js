@@ -56,7 +56,9 @@ var ListContainer = React.createClass({
                 React.createElement('div',
                     {className: 'list-container'},
                     React.createElement(ListHeader, null),
+                    React.createElement('hr', null),
                     React.createElement(NewPresentForm,null),
+                    React.createElement('hr', null),
                     React.createElement(List,{asdf: 'asdf'},{list_items})
                     )
                );
