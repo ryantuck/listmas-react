@@ -86,21 +86,11 @@ var NewPresentForm = React.createClass({
         this.setState({
             url: evt.target.value
         });
+        console.log(this.state);
     },
     createPresent: function(evt) {
         payload = this.state;
-        $.ajax({
-            url: 'https://uebxofiaf4.execute-api.us-west-2.amazonaws.com/dev/present',
-            data: JSON.stringify(payload),
-            dataType: 'json',
-            contentType: 'application/json; charset=utf-8',
-            type: 'POST',
-            success: function(response) {
-                console.log(response);
-            }.bind(this),
-            error: function(error) {
-                console.log(error);
-            }
-        });
+        create_present(payload);
+        return false;
     }
 });

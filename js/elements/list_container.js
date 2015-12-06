@@ -1,3 +1,8 @@
+var owner = 'ryan';
+
+var data = get_presents_for_user(owner);
+console.log(data);
+
 
 var item_data = [
 {
@@ -30,6 +35,16 @@ for (var i=0; i< item_data.length; i++) {
         React.createElement(ListItem, item_data[i], null)
         );
 }
+
+var user_stuff = get_user('ryan@ryantuck.io');
+
+var p = {
+    "title": "correctly formatted json"
+}
+
+create_user('socs@gmail.com')
+create_present(p);
+var pres = get_present('asdf');
 
 
 console.log(item_data);
