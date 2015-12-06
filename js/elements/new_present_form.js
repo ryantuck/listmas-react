@@ -75,6 +75,7 @@ var NewPresentForm = React.createClass({
         this.setState({
             title: evt.target.value
         });
+        console.log(this.props);
     },
     notesChange: function(evt) {
         this.setState({

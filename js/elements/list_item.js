@@ -46,15 +46,18 @@ var ListItem = React.createClass({
             console.log(this.state.count);
 
     },
+    printTest: function() {
+        console.log(this.props);
+    },
     getInitialState: function() {
         return {
             background: 'red',
             count: 0,
             isBro: 'maybs',
             api_Response: 'asdf',
-            title: 'item title',
-            notes: 'item notes',
-            url: 'item url'
+            title: this.props.present.title,
+            notes: this.props.present.notes,
+            url: this.props.present.url
         }
     },
     render: function() {
@@ -102,7 +105,7 @@ var ListItem = React.createClass({
                             React.createElement('button',
                                 {
                                     className: 'btn btn-primary',
-                                    onClick: this.changeColor
+                                    onClick: this.printTest
                                 },
                                 'edit'
                                 ),
