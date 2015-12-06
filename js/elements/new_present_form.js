@@ -14,39 +14,60 @@ var NewPresentForm = React.createClass({
                     {
                         className: 'new-item-form'
                     },
-                    React.createElement('h2',
-                        {
-                            className: 'new-present-form-title'
-                        },
-                        'Add a present!'
-                        ),
-                    React.createElement('input',
-                        {
-                            className: 'new-present-title',
-                            value: this.state.title,
-                            onChange: this.titleChange
-                        }
-                        ),
-                    React.createElement('input',
-                        {
-                            className: 'new-present-notes',
-                            value: this.state.notes,
-                            onChange: this.notesChange
-                        }
-                        ),
-                    React.createElement('input',
-                        {
-                            className: 'new-present-url',
-                            value: this.state.url,
-                            onChange: this.urlChange
-                        }
-                        ),
-                    React.createElement('button',
-                        {
-                            className: 'new-present-submit',
-                            onClick: this.createPresent
-                        },
-                        'create present!'
+                    React.createElement('form',
+                        {},
+                        React.createElement('h2',
+                            {
+                                className: 'new-present-form-title'
+                            },
+                            'Add a present!'
+                            ),
+                        React.createElement('div',
+                            {
+                                className: 'form-group'
+                            },
+                            React.createElement('input',
+                                {
+                                    className: 'form-control',
+                                    placeholder: 'present title',
+                                    value: null,
+                                    onChange: this.titleChange
+                                }
+                                )
+                            ),
+                        React.createElement('div',
+                            {
+                                className: 'form-group'
+                            },
+                            React.createElement('input',
+                                {
+                                    className: 'form-control',
+                                    placeholder: 'want this in all black',
+                                    value: null,
+                                    onChange: this.notesChange
+                                }
+                                )
+                            ),
+                        React.createElement('div',
+                            {
+                                className: 'form-group'
+                            },
+                            React.createElement('input',
+                                {
+                                    className: 'form-control',
+                                    placeholder: 'http://amazon.com/awesome-present',
+                                    value: null,
+                                    onChange: this.urlChange
+                                }
+                                )
+                            ),
+                        React.createElement('button',
+                            {
+                                className: ' btn btn-default',
+                                onClick: this.createPresent
+                            },
+                            'create present!'
+                            )
                         )
                     )
                );
