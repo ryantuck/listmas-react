@@ -2,6 +2,8 @@
 var ListHeader = React.createClass({
     displayName: 'ListHeader',
     render: function() {
+        console.log('rendering list header');
+        console.log(this.props);
         return (
                 React.createElement('div', {className: 'row'},
                     React.createElement('div', {className: 'col-md-10'},

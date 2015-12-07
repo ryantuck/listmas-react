@@ -9,6 +9,8 @@ var NewPresentForm = React.createClass({
         }
     },
     render: function() {
+        console.log('rendering new present form');
+        console.log(this.props);
         return (
                 React.createElement('div', { className: 'row' },
                     React.createElement('div', { className: 'col-md-12' },

@@ -1,14 +1,14 @@
 
 function get_presents_for_user(username) {
 
-var base_url = 'https://uebxofiaf4.execute-api.us-west-2.amazonaws.com/dev';
-var url = [base_url,'/user/',username,'/presents'].join('');
-console.log(url);
+    var base_url = 'https://uebxofiaf4.execute-api.us-west-2.amazonaws.com/dev';
+    var url = [base_url,'/user/',username,'/presents'].join('');
+    console.log(url);
 
     $.ajax({
         url: url,
         type: 'GET',
-        dataType: 'jsonp',
+        dataType: 'json',
         success: function(response) {
             return response;
         },
@@ -18,20 +18,24 @@ console.log(url);
     });
 };
 
-function get_user(username) {
+function get_user(username, callback) {
 
-var base_url = 'https://uebxofiaf4.execute-api.us-west-2.amazonaws.com/dev/';
-var url = [base_url,'user/',username].join('');
-console.log(url);
+    var base_url = 'https://uebxofiaf4.execute-api.us-west-2.amazonaws.com/dev/';
+    var url = [base_url,'user/',username].join('');
+    console.log(url);
 
     $.ajax({
         url: url,
         type: 'GET',
-        dataType: 'jsonp',
+        async: false,
+        dataType: 'json',
         success: function(response) {
-            return response;
+            console.log('woohoo success');
+            console.log(response);
+            callback(response);
         },
         error: function(error) {
+            console.log('wahhh error');
             console.log(error);
         }
     });
@@ -39,14 +43,14 @@ console.log(url);
 
 function get_present(title) {
 
-var base_url = 'https://uebxofiaf4.execute-api.us-west-2.amazonaws.com/dev/';
-var url = [base_url,'present/',title].join('');
-console.log(url);
+    var base_url = 'https://uebxofiaf4.execute-api.us-west-2.amazonaws.com/dev/';
+    var url = [base_url,'present/',title].join('');
+    console.log(url);
 
     $.ajax({
         url: url,
         type: 'GET',
-        dataType: 'jsonp',
+        dataType: 'json',
         success: function(response) {
             return response;
         },
@@ -57,7 +61,7 @@ console.log(url);
 };
 function create_present(present) {
 
-var base_url = 'https://uebxofiaf4.execute-api.us-west-2.amazonaws.com/dev/present';
+    var base_url = 'https://uebxofiaf4.execute-api.us-west-2.amazonaws.com/dev/present';
 
     $.ajax({
         url: base_url,
@@ -76,7 +80,7 @@ var base_url = 'https://uebxofiaf4.execute-api.us-west-2.amazonaws.com/dev/prese
 
 function create_user(email) {
 
-var base_url = 'https://uebxofiaf4.execute-api.us-west-2.amazonaws.com/dev/user';
+    var base_url = 'https://uebxofiaf4.execute-api.us-west-2.amazonaws.com/dev/user';
 
     $.ajax({
         url: base_url,

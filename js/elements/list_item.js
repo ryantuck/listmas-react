@@ -55,12 +55,15 @@ var ListItem = React.createClass({
             count: 0,
             isBro: 'maybs',
             api_Response: 'asdf',
-            title: this.props.present.title,
-            notes: this.props.present.notes,
-            url: this.props.present.url
+            title: this.props.title,
+            notes: this.props.notes,
+            url: this.props.url
         }
     },
     render: function() {
+
+        console.log('rendering list item');
+        console.log(this.props);
         return (
                 React.createElement('li',
                     {

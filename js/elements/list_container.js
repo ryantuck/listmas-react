@@ -1,7 +1,7 @@
 var owner = 'ryan';
 
-var data = get_presents_for_user(owner);
-console.log(data);
+// var data = get_presents_for_user(owner);
+// console.log(data);
 
 
 var item_data = [
@@ -36,30 +36,40 @@ for (var i=0; i< item_data.length; i++) {
         );
 }
 
-var user_stuff = get_user('ryan@ryantuck.io');
-
-var p = {
-    "title": "correctly formatted json"
-}
-
-create_user('socs@gmail.com')
-create_present(p);
-var pres = get_present('asdf');
 
 
-console.log(item_data);
+//var user_stuff = get_user('ryan@ryantuck.io');
+//
+//var p = {
+//    "title": "correctly formatted json"
+//}
+//
+//create_user('socs@gmail.com')
+//create_present(p);
+//var pres = get_present('asdf');
+
+
+//console.log(item_data);
 
 var ListContainer = React.createClass({
     displayName: 'ListContainer',
     render: function() {
+        var children = React.Children.map(
+                this.props.children,
+                function(child) {
+                    return child;
+                });
+        console.log('rendering list container');
+        console.log(this.props);
+        presents_list = [];
         return (
                 React.createElement('div',
                     {className: 'list-container'},
-                    React.createElement(ListHeader, null),
+                    React.createElement(ListHeader, this.props, {children}),
                     React.createElement('hr', null),
-                    React.createElement(NewPresentForm,null),
+                    React.createElement(NewPresentForm, this.props, {children}),
                     React.createElement('hr', null),
-                    React.createElement(List,{asdf: 'asdf'},{list_items})
+                    React.createElement(List, this.props, {children})
                     )
                );
     }

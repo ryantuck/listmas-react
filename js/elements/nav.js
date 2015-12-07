@@ -2,6 +2,8 @@
 var Nav = React.createClass({
     displayName: 'Nav',
     render: function() {
+        console.log('rendering nav');
+        console.log(this.props);
         return (
                 React.createElement('div', {className: 'navbar navbar-default'},
                     React.createElement('div', {className: 'container'},
