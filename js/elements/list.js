@@ -12,7 +12,7 @@ var List = React.createClass({
                 React.createElement('div', { className: 'row' },
                     React.createElement('div', { className: 'col-md-12' },
                         React.createElement('p', null),
-                        React.createElement('ul', null,
+                        React.createElement('ul', {className: 'list-group'},
                             {presents}
                             )
                         )

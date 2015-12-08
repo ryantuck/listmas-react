@@ -18,7 +18,7 @@ var ListItem = React.createClass({
     },
     render: function() {
         return (
-                React.createElement('li', null,
+                React.createElement('li', {className: 'list-group-item'},
                     React.createElement('div',{className: 'row'},
                         React.createElement('div',{className: 'col-md-6'},
                             React.createElement('h1', null,
