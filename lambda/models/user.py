@@ -1,5 +1,6 @@
 
 import boto3
+import uuid
 import decimal
 
 def get_user(event, context):
@@ -41,6 +42,41 @@ def create_user(event, context):
     return put_user(event, context)
 def update_user(event, context):
     return put_user(event, context)
+
+def put_present_for_user(event, context):
+
+    dynamo = boto3.resource('dynamodb')
+    table = dynamo.Table('users')
+
+    em = event['user']
+    p = event['present']
+
+    u = user_from_email(em, table)
+    presents = u['list']['presents']
+    update_present_from_id(presents, p['id'], p)
+    u['list']['presents'] = presents
+
+    r = table.put_item(Item=u)
+    return r
+
+def user_from_email(user_email, table):
+    em_key = {'email': user_email}
+    u = table.get_item(Key=em_key)
+    return u
+
+def present_from_id(presents, present_id):
+    present = None
+    # find present with given id
+    for i, p in enumerate(presents):
+        if p['id'] == present_id:
+            present_idx = p
+            break
+    return present
+
+def update_present_from_id(presents, present_id, present_params):
+    present = present_from_id(presents, present_id)
+    present.update(present_params)
+
 
 # taken from @garnaat for dealing with dynamodb decimal issues
 def replace_decimals(obj):
