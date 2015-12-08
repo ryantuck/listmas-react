@@ -1,19 +1,37 @@
 
 var ListHeader = React.createClass({
     displayName: 'ListHeader',
+    getInitialState: function() {
+        return {
+        list_title: 'Listmas List',
+        is_published: false
+        };
+    },
+    componentWillReceiveProps: function(newprops) {
+        if (typeof newprops.user != 'undefined') {
+            this.setState({
+                list_title: newprops.user.list.name,
+                is_published: newprops.user.list.published
+            });
+        }
+    },
     render: function() {
-        console.log('rendering list header');
-        console.log(this.props);
+        var published_str;
+        if (this.state.is_published) {
+            published_str = 'published!';
+        } else {
+            published_str = 'unpublished :(';
+        }
         return (
                 React.createElement('div', {className: 'row'},
-                    React.createElement('div', {className: 'col-md-10'},
+                    React.createElement('div', {className: 'col-md-9'},
                         React.createElement('h1', null,
-                            'List Header Title'
+                            this.state.list_title
                             )
                         ),
-                    React.createElement('div', {className: 'col-md-2'},
+                    React.createElement('div', {className: 'col-md-3'},
                         React.createElement('p', null,
-                            'status: unpublished'
+                            'status: '.concat(published_str)
                             ),
                         React.createElement('button',
                             {className: 'btn btn-success btn-block'},

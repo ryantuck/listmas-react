@@ -1,121 +1,50 @@
 
 var ListItem = React.createClass({
     displayName: 'ListItem',
-    changeColor: function() {
-            this.setState({
-                count: this.state.count + 1
-            });
-            if (this.state.background == 'green') {
-                this.setState({
-                    background: 'red'
-                });
-            }
-            else {
-                this.setState({
-                    background: 'green'
-                });
-            }
-            $.ajax({
-                url: '/get-data',
-                success: function(response) {
-                    x = response.bro;
-                    console.log(x);
-                    this.setState({
-                        isBro: response.bro
-                    });
-                }.bind(this),
-                error: function(error) {
-                    console.log(error);
-                }
-            });
-            $.ajax({
-                url: 'https://uebxofiaf4.execute-api.us-west-2.amazonaws.com/dev/users',
-                success: function(response) {
-                    console.log(response);
-                    this.setState({
-                        api_response: response
-                    });
-                }.bind(this),
-                error: function(error) {
-                    console.log(error);
-                }
-            });
-
-            console.log('background changed!');
-            console.log(this.state.background);
-            console.log(this.state.count);
-
-    },
-    printTest: function() {
-        console.log(this.props);
-    },
     getInitialState: function() {
         return {
-            background: 'red',
-            count: 0,
-            isBro: 'maybs',
-            api_Response: 'asdf',
             title: this.props.title,
             notes: this.props.notes,
             url: this.props.url
         }
     },
+    enableEditing: function() {
+        console.log('edit button pressed for list item');
+        console.log(this.state);
+    },
+    deleteItem: function() {
+        console.log('delete button pressed for list item');
+        console.log(this.state);
+    },
     render: function() {
-
-        console.log('rendering list item');
-        console.log(this.props);
         return (
-                React.createElement('li',
-                    {
-                        className: 'list-group-item'
-                    },
-                    React.createElement('div',
-                        {
-                            className: 'row'
-                        },
-                        React.createElement('div',
-                            {
-                                className: 'col-md-6'
-                            },
-                            React.createElement('h1',
-                                {
-                                    className: 'list-item-title'
-                                },
+                React.createElement('li', null,
+                    React.createElement('div',{className: 'row'},
+                        React.createElement('div',{className: 'col-md-6'},
+                            React.createElement('h1', null,
                                 this.state.title
                                 )
                             ),
-                        React.createElement('div',
-                            {
-                                className: 'col-md-4'
-                            },
-                            React.createElement('p',
-                                {
-                                    className: 'list-item-notes'
-                                },
+                        React.createElement('div', {className: 'col-md-4'},
+                            React.createElement('p', null,
                                 this.state.notes
                                 ),
-                            React.createElement('p',
-                                {
-                                    className: 'more_stuff'
-                                },
+                            React.createElement('p', null,
                                 this.state.url
                                 )
                         ),
-                        React.createElement('div',
-                            {
-                                className: 'col-md-2'
-                            },
+                        React.createElement('div', {className: 'col-md-2'},
                             React.createElement('button',
                                 {
                                     className: 'btn btn-primary btn-block',
-                                    onClick: this.printTest
+                                    onClick: this.enableEditing
                                 },
                                 'edit'
                                 ),
                             React.createElement('button',
                                 {
                                     className: 'btn btn-danger btn-block',
-                                    onClick: this.changeColor
+                                    onClick: this.deleteItem
                                 },
                                 'delete'
                                 )

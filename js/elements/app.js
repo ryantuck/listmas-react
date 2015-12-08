@@ -24,21 +24,16 @@ var Listmas = React.createClass({
         });
     },
     render: function() {
-        var children = React.Children.map(
-                this.props.children,
-                function(child) {
-                    return child;
-                });
         console.log('printing user at app level');
         console.log(this.props.user);
 
         return (
                 React.createElement('div', {className: 'listmas-container'},
-                    React.createElement(Nav, this.props, {children}),
+                    React.createElement(Nav, this.props),
                     React.createElement('div', {className: 'container'},
                         React.createElement('div', {className: 'row'},
                             React.createElement('div', {className: 'col-md-12'},
-                                React.createElement(ListContainer, this.props, {children})
+                                React.createElement(ListContainer, this.props)
                                 )
                             )
                         )

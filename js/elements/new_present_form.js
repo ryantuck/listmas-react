@@ -9,60 +9,42 @@ var NewPresentForm = React.createClass({
         }
     },
     render: function() {
-        console.log('rendering new present form');
-        console.log(this.props);
         return (
                 React.createElement('div', { className: 'row' },
                     React.createElement('div', { className: 'col-md-12' },
-                        React.createElement('form',
-                            {},
-                            React.createElement('h3',
-                                {
-                                    className: 'new-present-form-title'
-                                },
+                        React.createElement('form', null,
+                            React.createElement('h3', null,
                                 'Add a present!'
                                 ),
-                            React.createElement('div',
-                                {
-                                    className: 'form-group'
-                                },
-                                React.createElement('input',
-                                    {
+                            // title
+                            React.createElement('div', {className: 'form-group'},
+                                React.createElement('input', {
                                         className: 'form-control',
                                         placeholder: 'present title',
                                         value: null,
                                         onChange: this.titleChange
-                                    }
-                                    )
+                                    })
                                 ),
-                            React.createElement('div',
-                                {
-                                    className: 'form-group'
-                                },
-                                React.createElement('input',
-                                    {
+                            // notes
+                            React.createElement('div', {className: 'form-group'},
+                                React.createElement('input', {
                                         className: 'form-control',
                                         placeholder: 'want this in all black',
                                         value: null,
                                         onChange: this.notesChange
-                                    }
-                                    )
+                                    })
                                 ),
-                            React.createElement('div',
-                                {
-                                    className: 'form-group'
-                                },
-                                React.createElement('input',
-                                    {
+                            // url
+                            React.createElement('div', {className: 'form-group'},
+                                React.createElement('input', {
                                         className: 'form-control',
                                         placeholder: 'http://amazon.com/awesome-present',
                                         value: null,
                                         onChange: this.urlChange
-                                    }
-                                    )
+                                    })
                                 ),
-                            React.createElement('button',
-                                {
+                            // submit button
+                            React.createElement('button', {
                                     className: ' btn btn-success btn-block',
                                     onClick: this.createPresent
                                 },
@@ -93,6 +75,5 @@ var NewPresentForm = React.createClass({
     createPresent: function(evt) {
         payload = this.state;
         create_present(payload);
-        return false;
     }
 });
