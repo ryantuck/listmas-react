@@ -59,7 +59,6 @@ var NewPresentForm = React.createClass({
         this.setState({
             title: evt.target.value
         });
-        console.log(this.props);
     },
     notesChange: function(evt) {
         this.setState({
@@ -70,10 +69,8 @@ var NewPresentForm = React.createClass({
         this.setState({
             url: evt.target.value
         });
-        console.log(this.state);
     },
     createPresent: function(evt) {
-        payload = this.state;
-        create_present(payload);
+        create_present(this.props.user.email, this.state);
     }
 });
