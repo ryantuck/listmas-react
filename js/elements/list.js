@@ -5,8 +5,9 @@ var List = React.createClass({
         var presents = null;
         if (typeof this.props.user != 'undefined') {
             presents = this.props.user.list.presents.map(function(p) {
+                p.email = this.props.user.email;
                 return React.createElement(ListItem, p);
-            });
+            }.bind(this));
         }
         return (
                 React.createElement('div', { className: 'row' },

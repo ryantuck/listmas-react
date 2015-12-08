@@ -59,16 +59,23 @@ function get_present(title) {
         }
     });
 };
-function create_present(present) {
+
+function create_present(user, present) {
 
     var base_url = 'https://uebxofiaf4.execute-api.us-west-2.amazonaws.com/dev/present';
+
+    var payload = {
+        'user': user,
+        'present': present,
+        'action': 'create'
+    };
 
     $.ajax({
         url: base_url,
         type: 'POST',
         dataType: 'json',
         contentType: 'application/json',
-        data: JSON.stringify(present),
+        data: JSON.stringify(payload),
         success: function(response) {
             console.log(response);
         },
@@ -77,6 +84,33 @@ function create_present(present) {
         }
     });
 };
+
+function update_present(user, present) {
+
+    var base_url = 'https://uebxofiaf4.execute-api.us-west-2.amazonaws.com/dev/present';
+
+    var payload = {
+        'user': user,
+        'present': present,
+        'action': 'update'
+    };
+
+    $.ajax({
+        url: base_url,
+        type: 'POST',
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify(payload),
+        success: function(response) {
+            console.log(response);
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
+};
+
+
 
 function create_user(email) {
 
@@ -96,3 +130,36 @@ function create_user(email) {
         }
     });
 };
+
+function delete_present(user, present_id) {
+
+    var base_url = 'https://uebxofiaf4.execute-api.us-west-2.amazonaws.com/dev/present';
+
+    var payload = {
+        'user': user,
+        'present_id': present_id
+    };
+
+    $.ajax({
+        url: base_url,
+        type: 'DELETE',
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify(payload),
+        success: function(response) {
+            console.log(response);
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
+};
+
+
+
+
+
+
+
+
+

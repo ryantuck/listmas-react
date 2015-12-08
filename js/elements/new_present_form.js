@@ -3,9 +3,9 @@ var NewPresentForm = React.createClass({
     displayName: 'NewPresentForm',
     getInitialState: function() {
         return {
-            title: 'fun present',
-            notes: 'some notes here',
-            url: 'http://apple.com'
+            title: null,
+            notes: null,
+            url: null
         }
     },
     render: function() {
