@@ -52,29 +52,75 @@ def put_present_for_user(event, context):
     p = event['present']
 
     u = user_from_email(em, table)
+    print u
     presents = u['list']['presents']
+    print presents
     update_present_from_id(presents, p['id'], p)
     u['list']['presents'] = presents
 
     r = table.put_item(Item=u)
     return r
 
+def create_present_for_user(event, context):
+    dynamo = boto3.resource('dynamodb')
+    table = dynamo.Table('users')
+
+    em = event['user']
+    params = event['present']
+
+    u = user_from_email(em, table)
+    present = new_present_with_params(params)
+    u['list']['presents'].append(present)
+
+    r = table.put_item(Item=u)
+    return r
+
+def delete_present_for_user(event, context):
+    dynamo = boto3.resource('dynamodb')
+    table = dynamo.Table('users')
+
+    em = event['user']
+    p_id = event['present_id']
+
+    u = user_from_email(em, table)
+    presents = u['list']['presents']
+    idx = None
+    for i, p in enumerate(presents):
+        if p['id'] == p_id:
+            idx = i
+            break
+    presents.pop(idx)
+
+    r = table.put_item(Item=u)
+    return r
+
+
+
+def new_present_with_params(params):
+    p = {
+            'id': str(uuid.uuid4()),
+            'published': False
+            }
+    p.update(params)
+    return p
+
 def user_from_email(user_email, table):
     em_key = {'email': user_email}
     u = table.get_item(Key=em_key)
-    return u
+    return replace_decimals(u['Item'])
 
 def present_from_id(presents, present_id):
     present = None
     # find present with given id
     for i, p in enumerate(presents):
         if p['id'] == present_id:
-            present_idx = p
+            present = p
             break
     return present
 
 def update_present_from_id(presents, present_id, present_params):
     present = present_from_id(presents, present_id)
+    print present
     present.update(present_params)
 
 
