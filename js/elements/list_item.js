@@ -8,6 +8,7 @@ var ListItem = React.createClass({
             url: this.props.url,
             id: this.props.id,
             published: this.props.published,
+            visible: true,
             editing: false,
             tmp: {
                 title: null,
@@ -29,6 +30,9 @@ var ListItem = React.createClass({
     },
     deleteItem: function() {
         delete_present(this.props.email, this.props.id);
+        this.setState({
+            visible: false
+        });
     },
     tmpTitleChange: function(evt) {
         newState = React.addons.update(this.state, {
@@ -90,6 +94,13 @@ var ListItem = React.createClass({
     render: function() {
 
         var list_stuff;
+        var display_style;
+
+        if (this.state.visible) {
+            display_style = 'block';
+        } else {
+            display_style = 'none';
+        }
 
         if (this.state.editing) {
 
@@ -181,7 +192,11 @@ var ListItem = React.createClass({
         }
 
         return (
-                React.createElement('li', {className: 'list-group-item'},
+                React.createElement('li',
+                    {
+                        className: 'list-group-item',
+                        style: {display: display_style}
+                    },
                     // conditionally show different views if currently editing
                     { list_stuff }
                     )
