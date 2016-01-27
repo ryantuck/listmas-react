@@ -1,6 +1,9 @@
 var Listmas = React.createClass({
     displayName: 'Listmas',
     componentDidMount: function() {
+        this.loadEverything();
+    },
+    loadEverything: function() {
         var base_url = 'https://uebxofiaf4.execute-api.us-west-2.amazonaws.com/dev/';
         var url = [base_url,'user/',this.props.user_email].join('');
         console.log(url);
@@ -13,7 +16,8 @@ var Listmas = React.createClass({
                 console.log('woohoo success');
                 if (this.isMounted()) {
                     this.setProps({
-                        user: response
+                        user: response,
+                        reloadFunction: this.loadEverything
                     });
                 }
             }.bind(this),
@@ -22,6 +26,7 @@ var Listmas = React.createClass({
                 console.log(error);
             }
         });
+
     },
     render: function() {
         console.log('printing user at app level');

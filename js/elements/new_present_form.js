@@ -71,6 +71,28 @@ var NewPresentForm = React.createClass({
         });
     },
     createPresent: function(evt) {
-        create_present(this.props.user.email, this.state);
+        // create_present(this.props.user.email, this.state);
+        var base_url = 'https://uebxofiaf4.execute-api.us-west-2.amazonaws.com/dev/present';
+
+        var payload = {
+            'user': this.props.user.email,
+            'present': this.state,
+            'action': 'create'
+        };
+
+        $.ajax({
+            url: base_url,
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify(payload),
+            success: function(response) {
+                this.props.reloadFunction();
+                console.log(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
     }
 });
